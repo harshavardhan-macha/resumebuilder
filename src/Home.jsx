@@ -1,6 +1,8 @@
+import Header from "./components/Header";
 const Home = () => {
     return (
         <div className="home">
+            <Header />
             <h1>Build your free ai affliated resume here .</h1>
         </div>
     );
