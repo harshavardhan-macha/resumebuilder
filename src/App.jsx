@@ -1,13 +1,11 @@
 import './App.css'
-import Test from './Test' 
+import Home from './Home'
 
 
 function App() {
   return (
     <>
-      <h1>Resume Builder</h1>
-      <p>Build your resume effortlessly</p>
-      <Test />
+      <Home />
     </>
   )
 }
