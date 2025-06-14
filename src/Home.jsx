@@ -1,9 +1,13 @@
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ResumeBuilder from "./components/ResumeBuilder";
 const Home = () => {
     return (
-        <div className="home">
+        <div className="flex flex-col min-h-screen bg-gray-50">
             <Header />
-            <h1>Build your free ai affliated resume here .</h1>
+           <main className="flex-grow ">
+            <ResumeBuilder/></main> 
+            <Footer/>
         </div>
     );
 };
