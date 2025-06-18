@@ -148,7 +148,7 @@ className={`input border rounded-md p-2 w-full ${
                 value={formData.address}
                 onChange={handleChange}
                 className="input border border-gray-300 rounded-md p-2 w-full"
-                placeholder="123, Street Name, City, State - ZIP"
+                placeholder="123, Street Name, City,ate - ZIP"
               />
             </div>
             <div className="col-span-1">
@@ -361,6 +361,45 @@ className={`input border rounded-md p-2 w-full ${
         return null;
     }
   };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost:8000/api/resume", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert("🎉 Resume submitted successfully!");
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        summary: "",
+        dob: "",
+        address: "",
+        linkedin: "",
+        github: "",
+        education: [{ institution: "", degree: "", start: "", end: "" }],
+        experience: [{ role: "", company: "", start: "", end: "", description: "" }],
+        skills: [],
+        projectTitle: "",
+        projectDesc: "",
+      });
+      setStep(0);
+    } else {
+      alert("❌ Failed to submit resume. Please try again.");
+    }
+  } catch (error) {
+    console.error("Submit error:", error);
+    alert("🚨 Server error. Please try again later.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
@@ -394,17 +433,22 @@ className={`input border rounded-md p-2 w-full ${
           >
             ⬅ Back
           </button>
-          <button
-            onClick={handleNext}
-            disabled={step === steps.length - 1}
-            className={`px-6 py-2 rounded-full font-semibold text-white transition ${
-              step === steps.length - 1
-                ? "bg-blue-300 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-          >
-            {step === steps.length - 2 ? "✨ Review" : "Next ➡"}
-          </button>
+        {step === steps.length - 1 ? (
+  <button
+    onClick={handleSubmit}
+    className="px-6 py-2 rounded-full font-semibold text-white bg-green-600 hover:bg-green-700"
+  >
+    🚀 Submit Resume
+  </button>
+) : (
+  <button
+    onClick={handleNext}
+    className="px-6 py-2 rounded-full font-semibold text-white bg-blue-600 hover:bg-blue-700"
+  >
+    {step === steps.length - 2 ? "✨ Review" : "Next ➡"}
+  </button>
+)}
+
         </div>
       </div>
     </div>
