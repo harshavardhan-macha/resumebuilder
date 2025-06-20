@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { PersonalInfoStep } from "../steps/PersonalInfoStep";
+import PersonalStep from "./steps/PersonalStep";
 import { EducationStep } from "./steps/EducationStep";
 import { ExperienceStep } from "./steps/ExperienceStep";
-import { SkillsStep } from "../steps/SkillsStep";
-import { ProjectsStep } from "../steps/ProjectsStep";
-import { ReviewStep } from "../steps/ReviewStep";
+import { SkillsStep } from "./steps/SkillsStep";
+import { ProjectsStep } from "./steps/ProjectsStep";
+import { ReviewStep } from "./steps/ReviewStep";
 import { SubmitSuccess } from "./steps/SubmitSuccess";
 import { SubmitError } from "./steps/SubmitError";
 
@@ -112,7 +112,7 @@ const ResumeBuilder = () => {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <PersonalInfoStep formData={formData} handleChange={handleChange} validationErrors={validationErrors} />;
+        return <PersonalStep formData={formData} handleChange={handleChange} validationErrors={validationErrors} />;
       case 1:
         return <EducationStep formData={formData} updateArray={updateArray} setFormData={setFormData} validationErrors={validationErrors} />;
       case 2:

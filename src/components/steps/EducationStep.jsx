@@ -12,6 +12,7 @@ export const EducationStep = ({ formData, updateArray, setFormData, validationEr
             value={edu.institution}
             onChange={(e) => updateArray("education", index, "institution", e.target.value)}
             className="w-full border border-gray-300 rounded px-3 py-2"
+            placeholder="eg. Harvard University"
           />
         </div>
         <div className="mb-4">
@@ -21,6 +22,7 @@ export const EducationStep = ({ formData, updateArray, setFormData, validationEr
             value={edu.degree}
             onChange={(e) => updateArray("education", index, "degree", e.target.value)}
             className="w-full border border-gray-300 rounded px-3 py-2"
+            placeholder="eg. Bachelor of Science"
           />
         </div>
         <div className="grid grid-cols-2 gap-4">

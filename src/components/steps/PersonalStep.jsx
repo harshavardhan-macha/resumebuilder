@@ -1,4 +1,4 @@
-export const PersonalInfoStep = ({ formData, handleChange, validationErrors }) => (
+const PersonalStep = ({ formData, handleChange, validationErrors }) => (
   <>
     <div className="col-span-1">
       <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
@@ -98,3 +98,4 @@ export const PersonalInfoStep = ({ formData, handleChange, validationErrors }) =
     </div>
   </>
 );
+export default PersonalStep;
