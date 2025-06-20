@@ -5,6 +5,7 @@ const ResumeCard = ({ data }) => {
     const element = document.getElementById(`resume-${data._id}`);
     html2pdf().from(element).save(`${data.fullName}-resume.pdf`);
   };
+  console.log("ResumeCard data:", data);
 
   return (
     <div className="bg-gray-100 py-8 px-4 rounded-lg shadow mb-8">
@@ -83,6 +84,16 @@ const ResumeCard = ({ data }) => {
           ⬇ Download as PDF
         </button>
       </div>
+      {/* AI Suggestions */}
+{data.aiSuggestions && (
+  <section className="mb-6">
+    <h2 className="text-xl font-semibold border-b mb-2 text-blue-700">💡 AI Suggestions</h2>
+    <pre className="whitespace-pre-wrap text-sm text-gray-800 bg-blue-50 p-3 rounded-lg">
+      {data.aiSuggestions}
+    </pre>
+  </section>
+)}
+
     </div>
   );
 };

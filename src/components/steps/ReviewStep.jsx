@@ -52,6 +52,5 @@ export const ReviewStep = ({ formData }) => (
     <pre className="whitespace-pre-wrap text-sm mt-2 text-gray-700">{formData.aiSuggestions}</pre>
   </div>
 )}
-
   </div>
 );

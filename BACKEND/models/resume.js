@@ -29,6 +29,8 @@ const resumeSchema = new mongoose.Schema({
   skills: [String],
   projectTitle: String,
   projectDesc: String,
+  aiSuggestions: String , // ✅ must be present
+
 }, { timestamps: true });
 
 module.exports = mongoose.model("Resume", resumeSchema);

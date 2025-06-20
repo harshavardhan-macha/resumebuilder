@@ -98,7 +98,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    // 1. Send the full formData to OpenAI
+    // 1. Get AI suggestions
     const aiRes = await fetch("http://localhost:8000/api/ai-suggest", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -106,17 +106,15 @@ const handleSubmit = async (e) => {
     });
 
     const aiData = await aiRes.json();
-    const aiSuggestions = aiData.suggestions;
+    const aiSuggestions = aiData.suggestions || "No suggestions available.";
 
-    // 2. Add suggestions to the resume data
+    // 2. Combine formData with aiSuggestions
     const finalData = {
       ...formData,
-      aiSuggestions: aiSuggestions, // store suggestions with resume
+      aiSuggestions,
     };
 
-    // Optional: You could also update formData.summary, etc. with improved values if AI returns them directly
-
-    // 3. Now submit the final data to your backend
+    // 3. Send to backend
     const res = await fetch("http://localhost:8000/api/resume", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,10 +127,11 @@ const handleSubmit = async (e) => {
       setSubmitStatus("error");
     }
   } catch (err) {
-    console.error("❌ Submission error:", err);
+    console.error("Error submitting resume:", err);
     setSubmitStatus("error");
   }
 };
+
 
 
   const renderStep = () => {

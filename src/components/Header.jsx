@@ -33,10 +33,10 @@ const Header = () => {
    
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 text-gray-700 font-medium bg-white">
-          <a href="#features" className="block hover:text-blue-600">Features</a>
-          <a href="#templates" className="block hover:text-blue-600">Templates</a>
-          <a href="#about" className="block hover:text-blue-600">About</a>
-          <a href="#contact" className="block hover:text-blue-600">Contact</a>
+          <a href="/" className="hover:text-blue-600">CreateNew</a>
+          <a href="features" className="hover:text-blue-600">Features</a>
+          <a href="resumes" className="hover:text-blue-600">Resumes</a>
+          <a href="about" className="hover:text-blue-600">About</a>
         </div>
       )}
     </header>

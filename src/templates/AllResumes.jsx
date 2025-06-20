@@ -15,7 +15,7 @@ const AllResumes = () => {
   return (
     <>
      <Header />
-    <div className="p-6  gap-6 flex justify-center">
+    <div className="p-6  gap-6 flex justify-center flex-wrap">
      
       {resumes.map((resume) => (
         <ResumeCard key={resume._id} data={resume} />

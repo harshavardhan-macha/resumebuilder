@@ -96,6 +96,18 @@ const PersonalStep = ({ formData, handleChange, validationErrors }) => (
         placeholder="https://github.com/yourname"
       />
     </div>
+    <div className="col-span-2">
+  <label className="block text-sm font-medium text-gray-700 mb-1">Professional Summary</label>
+  <textarea
+    name="summary"
+    value={formData.summary}
+    onChange={handleChange}
+    className="input border border-gray-300 rounded-md p-2 w-full"
+    rows={4}
+    placeholder="A passionate web developer with experience in React, Node.js, and MongoDB..."
+  />
+</div>
+
   </>
 );
 export default PersonalStep;
