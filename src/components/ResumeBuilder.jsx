@@ -45,17 +45,21 @@ const ResumeBuilder = () => {
     });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "skills") {
-      setFormData((prev) => ({
-        ...prev,
-        skills: value.split(",").map((s) => s.trim()),
-      }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  if (name === "skills") {
+    setFormData((prev) => ({
+      ...prev,
+      skills: Array.isArray(value)
+        ? value
+        : value?.split(",").map((s) => s.trim()),
+    }));
+  } else {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+};
+
 
   const handleNext = () => {
     const errors = {};
