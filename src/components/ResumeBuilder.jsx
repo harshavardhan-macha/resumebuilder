@@ -94,24 +94,46 @@ const ResumeBuilder = () => {
     setStep((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:8000/api/resume", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setSubmitStatus("success");
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch (err) {
-      console.error("Error submitting:", err);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    // 1. Send the full formData to OpenAI
+    const aiRes = await fetch("http://localhost:8000/api/ai-suggest", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formData }),
+    });
+
+    const aiData = await aiRes.json();
+    const aiSuggestions = aiData.suggestions;
+
+    // 2. Add suggestions to the resume data
+    const finalData = {
+      ...formData,
+      aiSuggestions: aiSuggestions, // store suggestions with resume
+    };
+
+    // Optional: You could also update formData.summary, etc. with improved values if AI returns them directly
+
+    // 3. Now submit the final data to your backend
+    const res = await fetch("http://localhost:8000/api/resume", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(finalData),
+    });
+
+    if (res.ok) {
+      setSubmitStatus("success");
+    } else {
       setSubmitStatus("error");
     }
-  };
+  } catch (err) {
+    console.error("❌ Submission error:", err);
+    setSubmitStatus("error");
+  }
+};
+
 
   const renderStep = () => {
     switch (step) {

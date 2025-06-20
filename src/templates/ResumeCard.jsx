@@ -7,67 +7,80 @@ const ResumeCard = ({ data }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md mb-6 relative">
-      {/* PDF Content Wrapper */}
+    <div className="bg-gray-100 py-8 px-4 rounded-lg shadow mb-8">
       <div
         id={`resume-${data._id}`}
-        className="bg-white p-6 rounded-md text-gray-800 max-w-3xl mx-auto"
+        className="bg-white max-w-4xl mx-auto rounded-lg p-8 shadow text-gray-800"
       >
-        <div className="text-center mb-6">
+        {/* Header */}
+        <div className="text-center border-b pb-4 mb-6">
           <h1 className="text-3xl font-bold">{data.fullName}</h1>
-          <p>{data.email} | {data.phone}</p>
-          {data.linkedin && <p>LinkedIn: {data.linkedin}</p>}
-          {data.github && <p>GitHub: {data.github}</p>}
-          <p>{data.address}</p>
+          <p className="text-sm text-gray-600">{data.email} | {data.phone}</p>
+          <p className="text-sm">{data.address}</p>
+          {data.linkedin && <p className="text-sm text-blue-600">LinkedIn: {data.linkedin}</p>}
+          {data.github && <p className="text-sm text-gray-700">GitHub: {data.github}</p>}
         </div>
 
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold border-b pb-1 mb-2">Professional Summary</h2>
-          <p>{data.summary}</p>
-        </div>
+        {/* Summary */}
+        {data.summary && (
+          <section className="mb-6">
+            <h2 className="text-xl font-semibold border-b mb-2">Summary</h2>
+            <p>{data.summary}</p>
+          </section>
+        )}
 
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold border-b pb-1 mb-2">Education</h2>
-          <ul className="space-y-2">
-            {data.education.map((edu, i) => (
-              <li key={i}>
-                <strong>{edu.degree}</strong>, {edu.institution} ({edu.start} - {edu.end})
-              </li>
+        {/* Skills */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold border-b mb-2">Skills</h2>
+          <div className="flex flex-wrap gap-2">
+            {data.skills.map((skill, index) => (
+              <span key={index} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                {skill}
+              </span>
             ))}
-          </ul>
-        </div>
+          </div>
+        </section>
 
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold border-b pb-1 mb-2">Experience</h2>
-          <ul className="space-y-2">
-            {data.experience.map((exp, i) => (
-              <li key={i}>
-                <strong>{exp.role}</strong> at {exp.company} ({exp.start} - {exp.end})
-                <p className="ml-2 text-sm text-gray-600">{exp.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Education */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold border-b mb-2">Education</h2>
+          {data.education.map((edu, index) => (
+            <div key={index} className="mb-2">
+              <p className="font-semibold">{edu.degree}</p>
+              <p>{edu.institution}</p>
+              <p className="text-sm text-gray-600">{edu.start} - {edu.end}</p>
+            </div>
+          ))}
+        </section>
 
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold border-b pb-1 mb-2">Projects</h2>
-          <h4 className="font-bold">{data.projectTitle}</h4>
+        {/* Experience */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold border-b mb-2">Experience</h2>
+          {data.experience.map((exp, index) => (
+            <div key={index} className="mb-2">
+              <p className="font-semibold">{exp.role}</p>
+              <p>{exp.company}</p>
+              <p className="text-sm text-gray-600">{exp.start} - {exp.end}</p>
+              <p className="text-sm">{exp.description}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* Projects */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold border-b mb-2">Projects</h2>
+          <p className="font-semibold">{data.projectTitle}</p>
           <p>{data.projectDesc}</p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold border-b pb-1 mb-2">Skills</h2>
-          <p>{data.skills.join(", ")}</p>
-        </div>
+        </section>
       </div>
 
-      {/* PDF Button */}
-      <div className="text-right mt-4">
+      {/* Download Button */}
+      <div className="text-center mt-4">
         <button
           onClick={downloadPDF}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700"
         >
-          ⬇ Download PDF
+          ⬇ Download as PDF
         </button>
       </div>
     </div>

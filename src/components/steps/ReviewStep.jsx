@@ -46,12 +46,12 @@ export const ReviewStep = ({ formData }) => (
         </div>
       </div>
     )}
-    {(formData.projectTitle || formData.projectDesc) && (
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">Project</h3>
-        <p className="font-medium">{formData.projectTitle}</p>
-        <p className="text-gray-700">{formData.projectDesc}</p>
-      </div>
-    )}
+   {formData.aiSuggestions && (
+  <div className="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+    <h3 className="font-bold text-yellow-700">💡 AI Suggestions</h3>
+    <pre className="whitespace-pre-wrap text-sm mt-2 text-gray-700">{formData.aiSuggestions}</pre>
+  </div>
+)}
+
   </div>
 );

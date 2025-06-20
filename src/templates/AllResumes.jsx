@@ -15,7 +15,7 @@ const AllResumes = () => {
   return (
     <>
      <Header />
-    <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="p-6  gap-6 flex justify-center">
      
       {resumes.map((resume) => (
         <ResumeCard key={resume._id} data={resume} />

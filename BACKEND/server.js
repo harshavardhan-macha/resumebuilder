@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 8000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+const aiSuggest = require("./routes/aiSuggest");
+app.use("/api/ai-suggest", aiSuggest);
 app.use("/api/resume", resumeRoutes);
 
 // MongoDB Connection

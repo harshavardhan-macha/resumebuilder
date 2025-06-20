@@ -9,13 +9,15 @@ const Header = () => {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="text-2xl font-bold text-blue-600">Resume Builder</div>
+        <div className="text-2xl font-bold text-blue-600"
+        >Resume Builder</div>
 
         <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
-          <a href="#features" className="hover:text-blue-600">Features</a>
-          <a href="#templates" className="hover:text-blue-600">Templates</a>
-          <a href="#about" className="hover:text-blue-600">About</a>
-          <a href="#contact" className="hover:text-blue-600">Contact</a>
+          <a href="/" className="hover:text-blue-600">CreateNew</a>
+          <a href="features" className="hover:text-blue-600">Features</a>
+          <a href="resumes" className="hover:text-blue-600">Resumes</a>
+          <a href="about" className="hover:text-blue-600">About</a>
+
         </nav>
 
       
